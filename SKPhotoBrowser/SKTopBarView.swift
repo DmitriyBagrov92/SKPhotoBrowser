@@ -39,7 +39,10 @@ class SKTopBarView: UIView {
     
     convenience init(frame: CGRect, browser: SKPhotoBrowser) {
         self.init(frame: frame)
+        
         self.browser = browser
+        configureCloseButton()
+        configureDeleteButton()
     }
     
     func configureCloseButton() {
