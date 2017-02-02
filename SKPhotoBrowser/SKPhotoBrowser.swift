@@ -575,7 +575,7 @@ private extension SKPhotoBrowser {
     }
     
     func configureToolbar() {
-        toolbar = SKToolbar(frame: frameForToolbarAtOrientation(), browser: self)
+        toolbar = SKToolbar(frame: CGRect(x: 0.0, y: 0.0, width: view.frame.width, height: 44.0), browser: self)
         view.addSubview(toolbar)
     }
     
