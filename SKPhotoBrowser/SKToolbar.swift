@@ -56,7 +56,7 @@ class SKToolbar: UIToolbar {
 
 private extension SKToolbar {
     func setupApperance() {
-        backgroundColor = SKPhotoBrowserOptions.toolbarBackgroundColor
+        backgroundColor = SKToolbarOptions.backgroundColor
         clipsToBounds = true
         isTranslucent = true
         setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)

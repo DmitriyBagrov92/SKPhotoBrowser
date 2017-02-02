@@ -31,7 +31,8 @@ public struct SKPhotoBrowserOptions {
     public static var enableSingleTapDismiss: Bool = false
     
     public static var backgroundColor: UIColor = .black
-    public static var toolbarBackgroundColor: UIColor = .clear
+    
+    public static var statusBarStyle: UIStatusBarStyle = .default
 }
 
 public struct SKCaptionOptions {
@@ -44,5 +45,6 @@ public struct SKCaptionOptions {
 
 public struct SKToolbarOptions {
     public static var textColor: UIColor = .white
+    public static var backgroundColor: UIColor = .clear
     public static var font: UIFont = .systemFont(ofSize: 17.0)
 }
