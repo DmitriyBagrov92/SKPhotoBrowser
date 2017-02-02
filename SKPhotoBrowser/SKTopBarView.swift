@@ -30,6 +30,7 @@ class SKTopBarView: UIView {
         self.showFrame = CGRect(x: 0.0, y: 0.0, width: frame.width, height: 44.0)
         self.hideFrame = CGRect(x: 0.0, y: -44.0, width: frame.width, height: 44.0)
         self.size = CGSize(width: frame.width, height: 44.0)
+        self.backgroundColor = SKPhotoBrowserOptions.topBarBackgroundColor
     }
     
     required init?(coder aDecoder: NSCoder) {
