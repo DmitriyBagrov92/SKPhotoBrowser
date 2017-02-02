@@ -15,8 +15,7 @@ open class SKPhotoBrowser: UIViewController {
     
     let pageIndexTagOffset: Int = 1000
     
-    fileprivate var closeButton: SKCloseButton!
-    fileprivate var deleteButton: SKDeleteButton!
+    fileprivate var topbar: SKTopBarView!
     fileprivate var toolbar: SKToolbar!
     
     // actions
@@ -114,8 +113,7 @@ open class SKPhotoBrowser: UIViewController {
         super.viewDidLoad()
         
         configureAppearance()
-        configureCloseButton()
-        configureDeleteButton()
+        configureTopBar()
         configureToolbar()
         
         animator.willPresent(self)
@@ -239,24 +237,24 @@ open class SKPhotoBrowser: UIViewController {
 
 public extension SKPhotoBrowser {
   func updateCloseButton(_ image: UIImage, size: CGSize? = nil) {
-        if closeButton == nil {
-            configureCloseButton()
+        if topbar.closeButton == nil {
+            topbar.configureCloseButton()
         }
-        closeButton.setImage(image, for: UIControlState())
+        topbar.closeButton.setImage(image, for: UIControlState())
     
         if let size = size {
-            closeButton.setFrameSize(size)
+            topbar.closeButton.setFrameSize(size)
         }
     }
   
   func updateDeleteButton(_ image: UIImage, size: CGSize? = nil) {
-        if deleteButton == nil {
-            configureDeleteButton()
+        if topbar.deleteButton == nil {
+            topbar.configureDeleteButton()
         }
-        deleteButton.setImage(image, for: UIControlState())
+        topbar.deleteButton.setImage(image, for: UIControlState())
     
         if let size = size {
-            deleteButton.setFrameSize(size)
+            topbar.deleteButton.setFrameSize(size)
         }
     }
 }
@@ -387,12 +385,12 @@ public extension SKPhotoBrowser {
 internal extension SKPhotoBrowser {
     func showButtons() {
         if SKPhotoBrowserOptions.displayCloseButton {
-            closeButton.alpha = 1
-            closeButton.frame = closeButton.showFrame
+            topbar.closeButton.alpha = 1
+            topbar.closeButton.frame = topbar.closeButton.showFrame
         }
         if SKPhotoBrowserOptions.displayDeleteButton {
-            deleteButton.alpha = 1
-            deleteButton.frame = deleteButton.showFrame
+            topbar.deleteButton.alpha = 1
+            topbar.deleteButton.frame = topbar.deleteButton.showFrame
         }
     }
     
@@ -571,18 +569,9 @@ private extension SKPhotoBrowser {
         }
     }
     
-    func configureCloseButton() {
-        closeButton = SKCloseButton(frame: .zero)
-        closeButton.addTarget(self, action: #selector(closeButtonPressed(_:)), for: .touchUpInside)
-        closeButton.isHidden = !SKPhotoBrowserOptions.displayCloseButton
-        view.addSubview(closeButton)
-    }
-    
-    func configureDeleteButton() {
-        deleteButton = SKDeleteButton(frame: .zero)
-        deleteButton.addTarget(self, action: #selector(deleteButtonPressed(_:)), for: .touchUpInside)
-        deleteButton.isHidden = !SKPhotoBrowserOptions.displayDeleteButton
-        view.addSubview(deleteButton)
+    func configureTopBar() {
+        topbar = SKTopBarView(frame: view.bounds, browser: self)
+        view.addSubview(topbar)
     }
     
     func configureToolbar() {
@@ -602,12 +591,12 @@ private extension SKPhotoBrowser {
                 self.toolbar.frame = hidden ? self.frameForToolbarHideAtOrientation() : self.frameForToolbarAtOrientation()
                 
                 if SKPhotoBrowserOptions.displayCloseButton {
-                    self.closeButton.alpha = alpha
-                    self.closeButton.frame = hidden ? self.closeButton.hideFrame : self.closeButton.showFrame
+                    self.topbar.alpha = alpha
+                    self.topbar.frame = hidden ? self.topbar.hideFrame : self.topbar.showFrame
                 }
                 if SKPhotoBrowserOptions.displayDeleteButton {
-                    self.deleteButton.alpha = alpha
-                    self.deleteButton.frame = hidden ? self.deleteButton.hideFrame : self.deleteButton.showFrame
+                    self.topbar.alpha = alpha
+                    self.topbar.frame = hidden ? self.topbar.hideFrame : self.topbar.showFrame
                 }
                 captionViews.forEach { $0.alpha = alpha }
             },

@@ -33,6 +33,7 @@ public struct SKPhotoBrowserOptions {
     public static var backgroundColor: UIColor = .black
     
     public static var statusBarStyle: UIStatusBarStyle = .default
+    public static var topBarBackgroundColor: UIColor = .clear
 }
 
 public struct SKCaptionOptions {
