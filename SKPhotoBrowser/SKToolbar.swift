@@ -89,6 +89,9 @@ private extension SKToolbar {
         items.append(flexSpace)
         if SKPhotoBrowserOptions.displayAction {
             items.append(toolActionButton)
+            items.append(flexSpace)
+            items.append(flexSpace)
+            items.append(flexSpace)
         }
         setItems(items, animated: false)
     }
